@@ -1,0 +1,45 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+
+th{
+    background-color: #ef233c;
+    border-radius: 10px 10px 0px 0px;
+    color: white;
+    height: 40px;
+    font-weight: bold;
+    letter-spacing: .5px;
+}
+
+.id{
+    width: 5%;
+}
+
+.name{
+    width: 15%;
+}
+
+.descr{
+    width: 35%;
+}
+
+.deta{
+    width: 25%;
+}
+
+.ima{
+    width: 13%;
+}
+
+td{
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.692);
+}
+
+.idText{
+    text-align: center;
+}

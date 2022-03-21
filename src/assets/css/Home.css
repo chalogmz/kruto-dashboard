@@ -1,0 +1,16 @@
+.home-container {
+    display: block;
+    width: 50vw;
+    height:350px;
+    margin: auto;
+    padding: 10px;
+    
+}
+
+.home-container img {
+    width: 80%;
+}
+
+body {
+    background-color: white;
+}

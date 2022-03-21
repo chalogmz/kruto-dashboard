@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+body {
+    background-image: url(https://res.cloudinary.com/dmaiqkpom/image/upload/v1646251593/fondo-admin30_oe80rt.png);
+}
+
+.container{
+    display: flex;
+    width: 100vw;
+    height: max-content;
+    margin: 0px;
+}

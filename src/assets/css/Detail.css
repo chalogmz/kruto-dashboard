@@ -1,0 +1,27 @@
+.keyText{
+    font-weight:bold
+}
+
+label {
+    color: white;
+}
+
+.img-product{
+    display: block;
+    width: 300px;
+    height: 300px;
+    margin-top:10px;
+    margin-left: 80px;
+    border-radius: 10px;
+}
+article{
+    line-height: 20px;
+    margin-left: 10px;
+}
+
+.Category{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #515372;
+    margin-bottom: 10px;
+}
