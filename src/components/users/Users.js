@@ -62,7 +62,7 @@ function Users() {
                 <p className="total">{total}</p>
             </div>
             <div className="product">
-                <DetailUser nombre={usuario.username} id={usuario.id} email={usuario.email} imagen={usuario.image} />
+                <DetailUser nombre={usuario.username} id={usuario.id} email={usuario.email} imagen={usuario.urlImage} />
                 <button className="boton-avance" onClick={incrementar}>{'>'} </button>
                 <button className="boton-retroceso" onClick={decrementar}>{'<'}</button>
             </div>

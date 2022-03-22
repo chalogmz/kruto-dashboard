@@ -28,7 +28,9 @@ function Ends() {
                 )
             })
             .catch(error => console.error(error)) 
-        fetch(`https://kruto.herokuapp.com/api/products/`+ totalProductos)
+    }, []);
+    useEffect(() => {
+        fetch(`https://kruto.herokuapp.com/api/products/${totalProductos}`)
              .then(response => response.json())
              .then(data => {
                  setUltimoProduct(
@@ -37,32 +39,26 @@ function Ends() {
              })  
              .catch(error => console.error(error))
  
-         fetch(`https://kruto.herokuapp.com/api/users/` + totalUsuarios)
-             .then(response => response.json())
-             .then(data => {
-                 setUltimoUser(
-                     data.user
-                 )
-             })
-             .catch(error => console.error(error)) 
-        
- 
-         fetch(`https://kruto.herokuapp.com/api/users`)
-             .then(response => response.json())
-             .then(data => {
-                 setUsuarios(
-                     data.count
-                 )
-             })
-             .catch(error => console.error(error)) 
- 
      }, [totalProductos]);
+    useEffect(() => {
+        fetch(`https://kruto.herokuapp.com/api/users/${totalUsuarios}`)
+            .then(response => response.json())
+            .then(data => {
+                setUltimoUser(
+                    data.user
+                )
+            })
+            .catch(error => console.error(error)) 
+
+     }, [totalUsuarios]);
+
+     console.log(usuario)
 
     return(
         <div className="end-contain">
             <div className="producto">
                 <h2 className="title">Último Producto Creado</h2>
-                <DetailProduct nombre={producto.name} id={producto.id} descripcion={producto.description} imagen={producto.urlImage} />
+                <DetailProduct nombre={producto.name} id={producto.id} descripcion={producto.description} imagen={producto.imagenlUrl} />
             </div>
             <div className="producto">
                 <h2 className="title">Último Usuario Creado</h2>
