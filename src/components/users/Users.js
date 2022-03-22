@@ -7,54 +7,10 @@ import DetailUser from './DetailUser';
 function Users() {
     const [usuario, setUsuario] = useState([]);
     const [usuarios,setUsuarios] = useState([]);
-    const [index, setIndex] = useState(314);
+    let [index, setIndex] = useState(1);
     const [total, setTotal] = useState();
 
     useEffect(() => {
-        console.log("Se montó el componente");
-        fetch(`https://kruto.herokuapp.com/api/users/${index}`)
-            .then(response => response.json())
-            .then(data => {
-                setUsuario(
-                    data.user
-                )
-            })
-            .catch(error => console.error(error))
-    }, []);
-
-    useEffect(() => {
-        console.log("Se actualizó el componente");
-    }, [usuario]);
-
-    useEffect(() => {
-        return () => console.log("Se desmontó el componente");
-    }, []);
-
-
-    let incrementar = () => {
-        setIndex(index + 1);
-        fetch(`https://kruto.herokuapp.com/api/users/${index}`)
-            .then(response => response.json())
-            .then(data => {
-                setUsuario(
-                    data.user
-                )
-            })
-    }
-
-    let decrementar = () => {
-        setIndex(index - 1);
-        fetch(`https://kruto.herokuapp.com/api/users/${index}`)
-            .then(response => response.json())
-            .then(data => {
-                setUsuario(
-                    data.user
-                )
-            })
-    }
-
-    useEffect(() => {
-        console.log("Se montó el componente");
         fetch('https://kruto.herokuapp.com/api/users')
             .then(response => response.json())
             .then(data => {
@@ -63,18 +19,42 @@ function Users() {
                 )
             })
             .catch(error => console.error(error))
-    }, []);
 
-    useEffect(() => {
         fetch('https://kruto.herokuapp.com/api/users')
             .then(response => response.json())
             .then(data => {
                 setUsuarios(
-                    data.users
+                    data.data
                 )
+                console.log(data)
             })
             .catch(error => console.error(error))
     }, []);
+
+    useEffect(() => {
+
+        fetch(`https://kruto.herokuapp.com/api/users/${index}`)
+            .then(response => response.json())
+            .then(data => {
+                setUsuario(
+                    data.user
+                )
+            })
+            .catch(error => console.error(error))
+
+    },[usuario])
+
+    let incrementar = () => {
+        setIndex(
+            index >= total ? index = 1 : index + 1
+        );
+    }
+
+    let decrementar = () => {
+        setIndex(
+            index = 1 ? index = 1 : index - 1
+        );
+    }
 
     return (
         <div className="total-contain">
@@ -83,7 +63,7 @@ function Users() {
                 <p className="total">{total}</p>
             </div>
             <div className="product">
-                <DetailUser nombre={usuario.name} id={usuario.id} email={usuario.email} imagen={usuario.image} />
+                <DetailUser nombre={usuario.username} id={usuario.id} email={usuario.email} imagen={usuario.image} />
                 <button className="boton-avance" onClick={incrementar}>{'>'} </button>
                 <button className="boton-retroceso" onClick={decrementar}>{'<'}</button>
             </div>
