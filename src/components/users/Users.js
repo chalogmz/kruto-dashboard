@@ -26,7 +26,6 @@ function Users() {
                 setUsuarios(
                     data.data
                 )
-                console.log(data)
             })
             .catch(error => console.error(error))
     }, []);

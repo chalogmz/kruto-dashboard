@@ -7,63 +7,19 @@ import DetailProduct from '../products/DetailProduct'
 function Products() {
     const [producto, setProducto] = useState([]);
     const [productos, setProductos] = useState([]);
-    const [index, setIndex] = useState(103);
+    let [index, setIndex] = useState(1);
     const [total, setTotal] = useState();
-
-    useEffect(() => {
-        fetch(`https://kruto.herokuapp.com/api/products/${index}`)
-            .then(response => response.json())
-            .then(data => {
-                setProducto(
-                    data.product
-                )
-            })
-            .catch(error => console.error(error))
-    }, []);
-
-    useEffect(() => {
-        console.log("Se actualizó el componente");
-    }, [producto]);
-
-    useEffect(() => {
-        return () => console.log("Se desmontó el componente");
-    }, []);
-
-
-    let incrementar = () => {
-        setIndex(index + 1);
-        fetch(`https://kruto.herokuapp.com/api/products/${index}`)
-            .then(response => response.json())
-            .then(data => {
-                setProducto(
-                    data.product
-                )
-            })
-    }
-
-    let decrementar = () => {
-        setIndex(index - 1);
-        fetch(`https://kruto.herokuapp.com/api/products/${index}`)
-            .then(response => response.json())
-            .then(data => {
-                setProducto(
-                    data.product
-                )
-            })
-    }
 
     useEffect(() => {
         fetch('https://kruto.herokuapp.com/api/products')
             .then(response => response.json())
             .then(data => {
                 setTotal(
-                    data.countProducts
+                    data.count
                 )
             })
             .catch(error => console.error(error))
-    }, []);
 
-    useEffect(() => {
         fetch('https://kruto.herokuapp.com/api/products')
             .then(response => response.json())
             .then(data => {
@@ -72,7 +28,41 @@ function Products() {
                 )
             })
             .catch(error => console.error(error))
+
+        fetch(`https://kruto.herokuapp.com/api/products/${index}`)
+            .then(response => response.json())
+            .then(data => {
+                setProducto(
+                    data
+                )
+            })
+            .catch(error => console.error(error))
     }, []);
+
+    useEffect(() => {
+        fetch(`https://kruto.herokuapp.com/api/products/${index}`)
+            .then(response => response.json())
+            .then(data => {
+                setProducto(
+                    data
+                )
+            })
+            .catch(error => console.error(error))
+
+
+    }, [producto]);
+
+    let incrementar = () => {
+        setIndex(
+            index >= total ? index = 1 : index + 1
+        );
+    }
+
+    let decrementar = () => {
+        setIndex(
+            index <= 1 ? index = 1 : index - 1
+            );
+    }
 
     return (
         <div className="total-contain">
@@ -81,7 +71,7 @@ function Products() {
                 <p className="total">{total}</p>
             </div>
             <div className="product">
-                <DetailProduct nombre={producto.name} id={producto.id} descripcion={producto.description} detalle={producto.detail} imagen={producto.image} />
+                <DetailProduct nombre={producto.name} id={producto.id} descripcion={producto.description} detalle={producto.description} imagen={producto.image} />
                 <button className="boton-avance" onClick={incrementar}> {'>'}  </button>
                 <button className="boton-retroceso" onClick={decrementar}>{'<'}</button>
             </div>
